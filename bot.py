@@ -17,12 +17,9 @@ def main():
     async def on_ready():
         print (f"{client.user.name} has connected to Discord")
 
-
-    @client.command()
-    async def ping(ctx):
-        """Checks for a response from the bot"""
-        await ctx.send("Pong")
-
+    for folder in os.listdir("modules"):
+        if os.path.exists(os.path.join("modules", folder, "cog.py")):
+            client.load_extension(f"modules.{folder}.cog")
 
     client.run(os.getenv("DISCORD_TOKEN"))
 
