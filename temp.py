@@ -5,16 +5,17 @@ from discord.ext import commands
 
 
 def main():
-    #intents = discord.Intents.default()
-    #intents.members = True
-    #intents.reactions = True
-    #activity = discord.Activity(type=discord.ActivityType.watching, name="the battle of Schrute Farms")
-    client = commands.Bot(command_prefix="-")
+    intents = discord.Intents.default()
+    intents.members = True
+    intents.reactions = True
+    client = commands.Bot(command_prefix="-", intents=intents)
     
     load_dotenv()
 
     @client.event
     async def on_ready():
+        await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="the battle of Schrute Farms"))
+        #await client.change_presence(activity=discord.Streaming(name="Rocket League", url="https://www.twitch.tv/lucky4waffle"))
         print (f"{client.user.name} has connected to Discord")
 
     for folder in os.listdir("modules"):
