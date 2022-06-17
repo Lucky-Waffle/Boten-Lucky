@@ -3,6 +3,8 @@ import discord
 from dotenv.main import load_dotenv
 from discord.ext import commands
 
+#hei
+
 intents = discord.Intents.default()
 intents.members = True
 intents.reactions = True
